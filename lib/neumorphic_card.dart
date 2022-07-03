@@ -15,7 +15,7 @@ class NuemorphicCard extends StatefulWidget {
   final String title;
 
   static const double offset = 14.0;
-  static const double blurRadius = 11.0;
+  static const double blurRadius = 20.0;
   static const double spreadRadius = 0.0;
   static const double borderRadius = 38.0;
   static const double containerMargin = 16.0;
@@ -36,7 +36,6 @@ class _NuemorphicCardState extends State<NuemorphicCard> {
           : MediaQuery.of(context).size.shortestSide / 1.4,
       width: MediaQuery.of(context).size.shortestSide / 2.1,
       child: Listener(
-        // onPointerCancel: (event) => setState(() => isPressed = false),
         onPointerUp: (event) => setState(() => isPressed = false),
         onPointerDown: (event) => setState(() => isPressed = true),
         child: AnimatedContainer(
@@ -50,11 +49,11 @@ class _NuemorphicCardState extends State<NuemorphicCard> {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: isPressed
-                        ? [appBackgroundColorLight, appBackgroundColorDark]
-                        : [appBackgroundColorDark, appBackgroundColorLight]),
+                        ? [innerCardColorLight, innerCardColorDark]
+                        : [innerCardColorDark, innerCardColorLight]),
                 boxShadow: [
                   BoxShadow(
-                      color: appBackgroundColorLight,
+                      color: outerCardColorLight,
                       offset: isPressed
                           ? const Offset(
                               NuemorphicCard.offset, NuemorphicCard.offset)
@@ -63,7 +62,7 @@ class _NuemorphicCardState extends State<NuemorphicCard> {
                       blurRadius: NuemorphicCard.blurRadius,
                       spreadRadius: NuemorphicCard.spreadRadius),
                   BoxShadow(
-                      color: appBackgroundColorDark,
+                      color: outerCardColorDark,
                       offset: isPressed
                           ? const Offset(
                               -NuemorphicCard.offset, -NuemorphicCard.offset)

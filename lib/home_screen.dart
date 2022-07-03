@@ -46,10 +46,13 @@ class HomeScreen extends StatelessWidget {
                 alignment: WrapAlignment.center,
                 children: List.generate(
                     cards.length,
-                    (index) => NuemorphicCard(
-                        index: index,
-                        value: cards[index].value,
-                        headingIcon: cards[index].icon,
-                        title: cards[index].title))))
+                    (index) => GestureDetector(
+                          onTap: () {},
+                          child: NuemorphicCard(
+                              index: index,
+                              value: cards[index].value,
+                              headingIcon: cards[index].icon,
+                              title: cards[index].title),
+                        ))))
       ]));
 }

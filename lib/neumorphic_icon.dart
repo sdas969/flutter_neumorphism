@@ -23,6 +23,8 @@ class NuemorphicIcon extends StatelessWidget {
               colors: [
                 Color(0xffd8dbfa),
                 Color(0xffe6e9fc),
+                Color(0xffe6e9fc),
+                Color(0xffe6e9fc),
               ],
             ),
             boxShadow: const [

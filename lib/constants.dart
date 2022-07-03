@@ -3,8 +3,10 @@ import 'package:flutter_neumorphism/bottom_navbar_item_schema.dart';
 import 'package:flutter_neumorphism/card_data_schema.dart';
 
 const Color appBackgroundColor = Color(0xffdde1fc);
-const Color appBackgroundColorDark = Color(0xffd8dbfa);
-const Color appBackgroundColorLight = Color(0xffe6e9fc);
+const Color innerCardColorDark = Color(0xffdfe1f6);
+const Color innerCardColorLight = Color(0xfff6f6ff);
+const Color outerCardColorDark = Color(0xffd0d2f7);
+const Color outerCardColorLight = Color(0xffe8eafd);
 const Color appTextColor = Color(0xff4f3db4);
 const String userName = 'David';
 
