@@ -3,6 +3,7 @@ import 'package:flutter_neumorphism/constants.dart';
 import 'package:flutter_neumorphism/ui/sales_revenue.dart';
 import 'package:flutter_neumorphism/widgets/neumorphic_card.dart';
 import 'package:flutter_neumorphism/widgets/neumorphic_icon.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -34,6 +35,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 label: bottomNavBarIcons[index].label,
                 icon: NuemorphicIcon(icon: bottomNavBarIcons[index].icon))));
 
+    PreferredSize bottomAppBarTitle = PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: ListTile(
+            title: const Text('Hello $userName',
+                style: TextStyle(fontSize: 36, fontWeight: FontWeight.w700)),
+            subtitle: const Text('Welcome Back!'),
+            trailing: IconButton(
+                onPressed: () {},
+                color: appTextColor,
+                icon: const Icon(FontAwesomeIcons.sliders))));
+    List<Widget> cardsList = List.generate(
+        cards.length,
+        (index) => GestureDetector(
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const SalesRevenue())),
+            child: NuemorphicCard(
+                index: index,
+                value: cards[index].value,
+                headingIcon: cards[index].icon,
+                title: cards[index].title)));
+
     return Scaffold(
         bottomNavigationBar: bottomNavigationBar,
         body: CustomScrollView(slivers: <Widget>[
@@ -42,38 +64,15 @@ class _HomeScreenState extends State<HomeScreen> {
               expandedHeight: 200,
               centerTitle: true,
               automaticallyImplyLeading: false,
-              title: ListTile(
-                  trailing: const CircleAvatar(),
-                  leading: IconButton(
-                      onPressed: () {}, icon: const Icon(Icons.menu))),
-              bottom: AppBar(
-                  automaticallyImplyLeading: false,
-                  title: ListTile(
-                      title: const Text('Hello $userName',
-                          style: TextStyle(
-                              fontSize: 36, fontWeight: FontWeight.w700)),
-                      subtitle: const Text('Welcome Back!'),
-                      trailing: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Icons.settings))))),
+              title: appBarTitle,
+              bottom: bottomAppBarTitle),
           const SliverToBoxAdapter(child: SizedBox(height: 36)),
           SliverFillRemaining(
               child: Wrap(
                   runAlignment: WrapAlignment.center,
                   crossAxisAlignment: WrapCrossAlignment.start,
                   alignment: WrapAlignment.center,
-                  children: List.generate(
-                      cards.length,
-                      (index) => GestureDetector(
-                          onTap: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const SalesRevenue())),
-                          child: NuemorphicCard(
-                              index: index,
-                              value: cards[index].value,
-                              headingIcon: cards[index].icon,
-                              title: cards[index].title)))))
+                  children: cardsList))
         ]));
   }
 }

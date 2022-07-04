@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphism/schemas/bottom_navbar_item_schema.dart';
 import 'package:flutter_neumorphism/schemas/card_data_schema.dart';
@@ -12,6 +13,8 @@ const Color outerCardColorLight = Color(0xffe8eafd);
 const Color appTextColor = Color(0xff4f3db4);
 const Color graphFooterSelectedColor = Color(0xff5c4bce);
 const String userName = 'David';
+const String graphImageString = 'images/graph.png';
+const String accountImageString = 'images/account.png';
 
 const List<CardData> cards = [
   CardData(icon: Icons.percent, value: '230k', title: 'Sales'),
@@ -27,7 +30,7 @@ const List<GraphFooterItem> footerItems = [
   GraphFooterItem(isSelected: false, text: '3M'),
   GraphFooterItem(isSelected: false, text: '6M'),
   GraphFooterItem(isSelected: false, text: '9Y'),
-  GraphFooterItem(isSelected: false, text: '1Y'),
+  GraphFooterItem(isSelected: false, text: '1Y')
 ];
 
 const List<BottomNavBarItem> bottomNavBarIcons = [
@@ -59,3 +62,17 @@ const List<SalesRevenueItem> salesRevenueItems = [
       title: 'Revenue',
       value: '\$9745')
 ];
+
+final ListTile appBarTitle = ListTile(
+    trailing: Container(
+        width: kToolbarHeight / 1.5,
+        height: kToolbarHeight / 1.5,
+        decoration: BoxDecoration(
+            image: const DecorationImage(image: AssetImage(accountImageString)),
+            border: Border.all(color: appTextColor),
+            borderRadius: BorderRadius.circular(10))),
+    leading: IconButton(
+        color: appTextColor,
+        onPressed: () {},
+        icon: Transform.rotate(
+            angle: -90 * pi / 180, child: const Icon(Icons.filter_list))));

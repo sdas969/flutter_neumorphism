@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphism/constants.dart';
 import 'package:flutter_neumorphism/ui/home_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() => runApp(const MyApp());
 
@@ -12,8 +13,7 @@ class MyApp extends StatelessWidget {
       theme: Theme.of(context).copyWith(
           iconTheme: const IconThemeData(color: appTextColor),
           primaryIconTheme: const IconThemeData(color: appTextColor),
-          textTheme: Theme.of(context)
-              .textTheme
+          textTheme: GoogleFonts.poppinsTextTheme()
               .apply(bodyColor: appTextColor, displayColor: appTextColor),
           appBarTheme: const AppBarTheme(
               backgroundColor: appBackgroundColor, elevation: 0),
