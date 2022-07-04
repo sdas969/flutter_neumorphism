@@ -1,14 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphism/constants.dart';
-import 'package:flutter_neumorphism/neumorphic_card.dart';
-import 'package:flutter_neumorphism/neumorphic_icon.dart';
+import 'package:flutter_neumorphism/ui/sales_revenue.dart';
+import 'package:flutter_neumorphism/widgets/neumorphic_card.dart';
+import 'package:flutter_neumorphism/widgets/neumorphic_icon.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _currentIndex = 0;
+
+  changeCurrentIndex(index) => setState(() => _currentIndex = index);
 
   @override
   Widget build(BuildContext context) => Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _currentIndex,
+          onTap: (index) => changeCurrentIndex(index),
+          selectedFontSize: 12,
+          showUnselectedLabels: false,
           backgroundColor: appBackgroundColor,
           selectedItemColor: appTextColor,
           unselectedItemColor: appTextColor,
@@ -47,12 +61,14 @@ class HomeScreen extends StatelessWidget {
                 children: List.generate(
                     cards.length,
                     (index) => GestureDetector(
-                          onTap: () {},
-                          child: NuemorphicCard(
-                              index: index,
-                              value: cards[index].value,
-                              headingIcon: cards[index].icon,
-                              title: cards[index].title),
-                        ))))
+                        onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const SalesRevenue())),
+                        child: NuemorphicCard(
+                            index: index,
+                            value: cards[index].value,
+                            headingIcon: cards[index].icon,
+                            title: cards[index].title)))))
       ]));
 }
